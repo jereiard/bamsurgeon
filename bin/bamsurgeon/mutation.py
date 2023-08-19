@@ -240,7 +240,7 @@ def mutate(args, log, bamfile, bammate, chrom, mutstart, mutend, mutpos_list, av
                                     logger.warning(mutid + " warning: no mate for " + pread.alignment.qname)
                                     if args.requirepaired:
                                         logger.warning(mutid + " skipped mutation due to --requirepaired")
-                                        return True, False, {}, {}, {}
+                                        return True, False, {}, {}, {}, {}
 
                             if extqname not in mutmates:
                                 mutmates[extqname] = mate
