@@ -339,7 +339,7 @@ def main(args):
     var_basename = '.'.join(os.path.basename(args.varFileName).split('.')[:-1])
     bam_basename = '.'.join(os.path.basename(args.outBamFile).split('.')[:-1])
 
-    vcf_fn = args.vcf + bam_basename + '.addindel.' + var_basename + '.vcf'
+    vcf_fn = args.vcf
 
     makevcf.write_vcf_indel('addindel_logs_' + os.path.basename(args.outBamFile), args.refFasta, vcf_fn)
 
