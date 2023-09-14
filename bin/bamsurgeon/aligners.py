@@ -61,8 +61,11 @@ def remap_fastq(name, fq1, fastaref, outbam, options, fq2=None, mutid='null', th
     basefn = "tmp." + str(uuid4())
     sam_out = basefn + '.sam'
     sort_tmp = basefn + '.sort.bam'
-
-    logger.info(mutid + " aligning " + fq1 + ',' + fq2 + " with " + name)
+    
+    if fq2 is not None:
+        logger.info(mutid + " aligning " + fq1 + ',' + fq2 + " with " + name)
+    elif
+        logger.info(mutid + " aligning " + fq1 + " with " + name)
     if name == 'backtrack':
         _run_backtrack(fq1, fastaref, sam_out, fq2=fq2, threads=threads)
     elif name == 'mem':
