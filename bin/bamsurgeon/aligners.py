@@ -172,7 +172,7 @@ def _run_bowtie2(fq1, bowtie2ref, sam_out, fq2=None):
 def _run_tmap(fq1, fastaref, sam_out, fq2=None, threads=1):
     if fq2 is not None:
         raise ValueError('tmap is not supported for paired-end reads.')
-    sam_cmd = ['tmap', 'mapall', '-f', fastaref, '-r', fq1, '-n', str(threads), '-v', '-u', '-o', '0', 'stage1', 'map4']
+    sam_cmd = ['/root/miniconda3/bin/tmap-ion', 'mapall', '-f', fastaref, '-r', fq1, '-n', str(threads), '-v', '-u', '-o', '0', 'stage1', 'map4']
     with open(sam_out, 'w') as sam:
         subprocess.check_call(sam_cmd, stdout=sam)
 
