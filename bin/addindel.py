@@ -154,8 +154,10 @@ def makemut(args, chrom, start, end, vaf, ins, avoid, alignopts):
         if read.seq != mutreads[extqname]:
             if not args.nomut and extqname in readlist:
                 qual = read.qual # changing seq resets qual (see pysam API docs)
+                tags = read.get_tags()
                 read.seq = mutreads[extqname] # make mutation
                 read.qual = qual
+                read.set_tags(tags)
                 nmut += 1
         if not hasSNP or args.force:
             wrote += 1
