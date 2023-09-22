@@ -119,8 +119,10 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
             continue
         if nameprefix:
             qual = read.qual # temp
+            tags = read.get_tags()
             read.qname = nameprefix + read.qname # must set name _before_ setting quality (see pysam docs)
             read.qual = qual
+            read.set_tags(tags)
         extqname = read.qname
         if not read.is_secondary and not read.is_supplementary:
             rlist = rdict[extqname]
@@ -155,14 +157,17 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
             continue
         if nameprefix:
             qual = read.qual # temp
+            tags = read.get_tags()
             read.qname = nameprefix + read.qname
             read.qual = qual
+            read.set_tags(tags)
         extqname = read.qname
         newReads = []
         if extqname in rdict:
             newRead = rdict[extqname][0 if read.is_read1 else 1 if read.is_read2 else 2]
             if keepqual:
                 newRead.qual = read.qual
+            newRead.set_tags(read.get_tags())
             newReads = [newRead]
             used.add(extqname)
             recount += 1

@@ -199,8 +199,10 @@ def makemut(args, hc, avoid, alignopts):
         if read.seq != mutreads[extqname]:
             if not args.nomut and extqname in readlist:
                 qual = read.qual # changing seq resets qual (see pysam API docs)
+                tags = read.get_tags()
                 read.seq = mutreads[extqname] # make mutation
                 read.qual = qual
+                read.get_tabs(tags)
                 nmut += 1
         if (not hasSNP) or args.force:
             wrote += 1
@@ -403,11 +405,11 @@ def main(args):
     bedfile.close()
 
     # cleanup
-    for bam in tmpbams:
-        if os.path.exists(bam):
-            os.remove(bam)
-        if os.path.exists(bam + '.bai'):
-            os.remove(bam + '.bai')
+    #for bam in tmpbams:
+    #    if os.path.exists(bam):
+    #        os.remove(bam)
+    #    if os.path.exists(bam + '.bai'):
+    #        os.remove(bam + '.bai')
 
     if args.skipmerge:
         logger.info("skipping merge, plase merge reads from %s manually." % outbam_mutsfile)
