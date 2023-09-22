@@ -12,7 +12,7 @@ def markreads(bamfn, fasta_ref, outfn):
     for read in bam.fetch(until_eof=True):
         #tags = read.tags
         #tags.append(('BS',1))
-        read.set_tag('BS',1,'i')
+        read.set_tag('BS','JWJ','Z')
         #read.set_tag('ZP', array('f',[0.00243528,0.00153962,9.85689e-07]))
         #read.set_tag('ZA',238,'i')
         #read.set_tag('ZG',403,'i')

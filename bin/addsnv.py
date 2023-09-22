@@ -202,7 +202,7 @@ def makemut(args, hc, avoid, alignopts):
                 tags = read.get_tags()
                 read.seq = mutreads[extqname] # make mutation
                 read.qual = qual
-                read.get_tabs(tags)
+                read.set_tags(tags)
                 nmut += 1
         if (not hasSNP) or args.force:
             wrote += 1
