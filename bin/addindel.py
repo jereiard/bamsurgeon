@@ -157,7 +157,7 @@ def makemut(args, chrom, start, end, vaf, ins, avoid, alignopts):
                 tags = read.get_tags()
                 read.seq = mutreads[extqname] # make mutation
                 #read.qual = qual
-                read.qual = [42] * len(read.seq)
+                read.query_qualities = [42] * len(read.seq)
                 read.set_tags(tags)
                 read.set_tag('BS', 'JWJ_INDEL')
                 nmut += 1
