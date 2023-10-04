@@ -121,7 +121,8 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
             qual = read.qual # temp
             tags = read.get_tags()
             read.qname = nameprefix + read.qname # must set name _before_ setting quality (see pysam docs)
-            read.qual = qual
+            #read.qual = qual
+            read.query_qualities = [42] * len(read.seq)
             read.set_tags(tags)
         extqname = read.qname
         if not read.is_secondary and not read.is_supplementary:
