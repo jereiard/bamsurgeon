@@ -168,7 +168,8 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
         if extqname in rdict:
             newRead = rdict[extqname][0 if read.is_read1 else 1 if read.is_read2 else 2]
             if keepqual:
-                newRead.qual = read.qual
+                #newRead.qual = read.qual
+                newRead.query_qualities = [42] * len(newRead.seq)
             newRead.set_tags(read.get_tags())
             newReads = [newRead]
             used.add(extqname)
