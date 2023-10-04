@@ -73,7 +73,7 @@ def makeins(read, start, ins, debug=False):
             right = read.seq[pos_in_read:]
 
             newseq = left + ins + right
-            newseq = newseq[:orig_len]
+            #newseq = newseq[:orig_len]
 
         else:
             pos_in_read = len(read.seq) - pos_in_read
@@ -83,7 +83,8 @@ def makeins(read, start, ins, debug=False):
             right = rcseq[pos_in_read:]
 
             newseq = left + rc(ins) + right
-            newseq = rc(newseq[:orig_len])
+            #newseq = rc(newseq[:orig_len])
+            newseq = rc(newseq)
 
     logger.debug("DEBUG: INS: orig seq: %s" % read.seq)
     logger.debug("DEBUG: INS: newseq: %s" % newseq)
@@ -225,7 +226,7 @@ def mutate(args, log, bamfile, bammate, chrom, mutstart, mutend, mutpos_list, av
 
                             if is_insertion:
                                 mutreads[extqname] = makeins(pread.alignment, indel_start, ins_seq)
-
+                                
                             if is_deletion:
                                 mutreads[extqname] = makedel(pread.alignment, chrom, indel_start, indel_end, reffile)
 
