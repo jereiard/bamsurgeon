@@ -156,8 +156,8 @@ def makemut(args, chrom, start, end, vaf, ins, avoid, alignopts):
                 qual = read.qual # changing seq resets qual (see pysam API docs)
                 tags = read.get_tags()
                 read.seq = mutreads[extqname] # make mutation
-                #read.qual = qual
-                read.query_qualities = [42] * len(read.seq)
+                read.qual = qual
+                #read.query_qualities = [42] * len(read.seq)
                 read.set_tags(tags)
                 read.set_tag('BS', 'JWJ_INDEL')
                 nmut += 1

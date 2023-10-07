@@ -73,7 +73,7 @@ def makeins(read, start, ins, debug=False):
             right = read.seq[pos_in_read:]
 
             newseq = left + ins + right
-            #newseq = newseq[:orig_len]
+            newseq = newseq[:orig_len]
 
         else:
             pos_in_read = len(read.seq) - pos_in_read
@@ -83,8 +83,8 @@ def makeins(read, start, ins, debug=False):
             right = rcseq[pos_in_read:]
 
             newseq = left + rc(ins) + right
-            #newseq = rc(newseq[:orig_len])
-            newseq = rc(newseq)
+            newseq = rc(newseq[:orig_len])
+            #newseq = rc(newseq)
 
     logger.debug("DEBUG: INS: orig seq: %s" % read.seq)
     logger.debug("DEBUG: INS: newseq: %s" % newseq)
