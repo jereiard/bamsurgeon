@@ -121,8 +121,8 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
             qual = read.qual # temp
             tags = read.get_tags()
             read.qname = nameprefix + read.qname # must set name _before_ setting quality (see pysam docs)
-            #read.qual = qual
-            read.query_qualities = [42] * len(read.seq)
+            read.qual = qual
+            #read.query_qualities = [42] * len(read.seq)
             read.set_tags(tags)
         extqname = read.qname
         if not read.is_secondary and not read.is_supplementary:
@@ -160,16 +160,16 @@ def replace_reads(origbamfile, mutbamfile, outbamfile, fasta_ref, nameprefix=Non
             qual = read.qual # temp
             tags = read.get_tags()
             read.qname = nameprefix + read.qname
-            #read.qual = qual
-            read.query_qualities = [42] * len(read.seq)
+            read.qual = qual
+            #read.query_qualities = [42] * len(read.seq)
             read.set_tags(tags)
         extqname = read.qname
         newReads = []
         if extqname in rdict:
             newRead = rdict[extqname][0 if read.is_read1 else 1 if read.is_read2 else 2]
             if keepqual:
-                #newRead.qual = read.qual
-                newRead.query_qualities = [42] * len(newRead.seq)
+                newRead.qual = read.qual
+                #newRead.query_qualities = [42] * len(newRead.seq)
             newRead.set_tags(read.get_tags())
             newReads = [newRead]
             used.add(extqname)
